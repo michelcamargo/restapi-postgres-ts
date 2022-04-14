@@ -1,14 +1,14 @@
 {
   "name": "restapi-postgres-ts",
   "version": "1.0.0",
-  "description": "",
+  "description": "API REST Postgres Typescript",
   "main": "index.js",
   "scripts": {
     "dev": "concurrently \"tsc --watch\" \"nodemon dist/index.js\"",
     "build": "tsc"
   },
   "keywords": [],
-  "author": "",
+  "author": "Michel de Souza Camargo",
   "license": "ISC",
   "devDependencies": {
     "@types/express": "^4.17.13",
