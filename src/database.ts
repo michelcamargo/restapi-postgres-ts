@@ -1,9 +1,9 @@
 import { Pool } from 'pg';
 
 export const pool = new Pool({
-    user: 'postgres',
+    user: 'mscamargo',
     host: 'localhost',
-    database: 'mainapi',
-    password: 'orangeBOX=2705',
+    database: 'camargo-db',
+    password: '2705',
     port: 5432
 });
