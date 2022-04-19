@@ -6,7 +6,7 @@ import { pool } from '../database';
 export const getUsers = async (req: Request, res: Response): Promise<Response> => {
   try {
     const response: QueryResult = await pool.query('SELECT * FROM users');
-    return res.status(200).json(response.rows);
+    return res.status(200).json(`${response.rows}${response.rowCount}`);
   } catch (error) {
     return res.status(500).json({
       message: 'Internal server error',
