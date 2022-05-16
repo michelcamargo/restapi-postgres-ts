@@ -1,12 +1,15 @@
 import {Request, Response} from 'express';
 import {QueryResult} from 'pg';
 
-import { pool } from '../database';
+import { pool } from '../../database';
 
-export const getUsers = async (req: Request, res: Response): Promise<Response> => {
+export const getAllCustomers = async (req: Request, res: Response): Promise<Response> => {
+  console.log("[getAllCustomers] executed");
+
   try {
-    const response: QueryResult = await pool.query('SELECT * FROM users');
-    return res.status(200).json(`${response.rows}${response.rowCount}`);
+    const response: QueryResult = await pool.query('SELECT * FROM customers');
+    // console.log("[getAllCustomers]", response.rows);
+    return res.status(200).json(response.rows);
   } catch (error) {
     return res.status(500).json({
       message: 'Internal server error',
@@ -15,9 +18,11 @@ export const getUsers = async (req: Request, res: Response): Promise<Response> =
   }
 };
 
-export const getUserById = async (req: Request, res: Response): Promise<Response> => {
+export const getCustomerById = async (req: Request, res: Response): Promise<Response> => {
+  console.log("[getCustomerById] executed");
+
   try {
-    const query = 'SELECT * FROM users WHERE id = $1';
+    const query = 'SELECT * FROM customers WHERE id = $1';
     const id = parseInt(req.params.id);
     const response: QueryResult = await pool.query(query, [id]);
     return res.status(200).json(response.rows);
@@ -29,14 +34,17 @@ export const getUserById = async (req: Request, res: Response): Promise<Response
   }
 };
 
-export const createUser = async (req: Request, res: Response): Promise<Response> => {
+export const registerCustomer = async (req: Request, res: Response): Promise<Response> => {
+  console.log("[registerCustomer] executed");
   try {
     const { name, email } = req.body;
-    const query = 'INSERT INTO users (name, email) VALUES ($1, $2)';
+    const query = 'INSERT INTO customers (name, email) VALUES ($1, $2)';
+
+    // checkIfCustomerExists(email) && console.log("[createCustomer]", "Usuário existente.");
 
     const response: QueryResult = await pool.query(query, [name, email]);
     return res.status(201).json({
-      message: '[Users] Usuário criado.',
+      message: '[Customers] Cliente criado.',
       body: {
         user: {
           name,
@@ -52,15 +60,16 @@ export const createUser = async (req: Request, res: Response): Promise<Response>
   }
 };
 
-export const updateUser = async (req: Request, res: Response): Promise<Response> => {
+export const updateCustomer = async (req: Request, res: Response): Promise<Response> => {
+  console.log("[updateCustomer] executed");
   try {
     const id = parseInt(req.params.id);
     const { name, email } = req.body;
-    const query = 'UPDATE users SET name = $1, email = $2 WHERE id = $3';
+    const query = 'UPDATE customers SET name = $1, email = $2 WHERE id = $3';
 
     const response: QueryResult = await pool.query(query, [name, email, id]);
     return res.status(200).json({
-      message: `[Users] Usuário ${name} atualizado.`,
+      message: `[Customers] Cliente ${name} atualizado.`,
       body: {
         user: {
           name,
@@ -76,14 +85,15 @@ export const updateUser = async (req: Request, res: Response): Promise<Response>
   }
 };
 
-export const removeUser = async (req: Request, res: Response): Promise<Response> => {
+export const removeCustomer = async (req: Request, res: Response): Promise<Response> => {
+  console.log("[removeCustomer] executed");
   try {
     const id = parseInt(req.params.id);
-    const query = 'DELETE FROM users WHERE id = $1';
+    const query = 'DELETE FROM customers WHERE id = $1';
 
     const response: QueryResult = await pool.query(query, [id]);
     return res.status(200).json({
-      message:`[Users] Usuário ${id} removido.`
+      message:`[Customers] Cliente ${id} removido.`
     });
   } catch (error) {
     return res.status(500).json({
