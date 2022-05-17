@@ -6,8 +6,8 @@ import { pool } from '../../database';
 export const getUsers = async (req: Request, res: Response): Promise<Response> => {
   try {
     const response: QueryResult = await pool.query('SELECT * FROM users');
-    console.log("[getUsers]", response.rows);
-    return res.status(200).json(`${response.rows}${response.rowCount}`);
+    // console.log("[getUsers]", response.rows);
+    return res.status(200).json(response.rows);
   } catch (error) {
     return res.status(500).json({
       message: 'Internal server error',
@@ -32,18 +32,21 @@ export const getUserById = async (req: Request, res: Response): Promise<Response
 
 export const registerUser = async (req: Request, res: Response): Promise<Response> => {
   try {
-    const { name, email } = req.body;
-    const query = 'INSERT INTO users (name, email) VALUES ($1, $2)';
+    const { alias, firstName, lastName, email, secret} = req.body;
+    const query = 'INSERT INTO users (U_ALIAS, U_FIRST_NAME, U_LAST_NAME, U_EMAIL, U_SECRET) VALUES ($1, $2, $3, $4, $5)';
 
     // checkIfUserExists(email) && console.log("[createUser]", "Usuário existente.");
 
-    const response: QueryResult = await pool.query(query, [name, email]);
+    const response: QueryResult = await pool.query(query, [alias, firstName, lastName, email, secret]);
     return res.status(201).json({
       message: '[Users] Usuário criado.',
       body: {
         user: {
-          name,
-          email
+          alias,
+          firstName,
+          lastName,
+          email,
+          secret
         }
       }
     });

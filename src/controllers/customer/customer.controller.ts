@@ -4,8 +4,6 @@ import {QueryResult} from 'pg';
 import { pool } from '../../database';
 
 export const getAllCustomers = async (req: Request, res: Response): Promise<Response> => {
-  console.log("[getAllCustomers] executed");
-
   try {
     const response: QueryResult = await pool.query('SELECT * FROM customers');
     // console.log("[getAllCustomers]", response.rows);
@@ -19,8 +17,6 @@ export const getAllCustomers = async (req: Request, res: Response): Promise<Resp
 };
 
 export const getCustomerById = async (req: Request, res: Response): Promise<Response> => {
-  console.log("[getCustomerById] executed");
-
   try {
     const query = 'SELECT * FROM customers WHERE id = $1';
     const id = parseInt(req.params.id);
