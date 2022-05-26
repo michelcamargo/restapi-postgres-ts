@@ -3,7 +3,7 @@ const router = Router();
 
 import { getUsers, getUserById, updateUser, removeUser, registerUser } from '../controllers/user/user.controller';
 import { getCustomerById, updateCustomer, removeCustomer, registerCustomer, getAllCustomers } from '../controllers/customer/customer.controller';
-import {getLinksByGroupName} from "../controllers/content/content.controller";
+import { getContentByGroupName, getContentByTitle } from "../controllers/content/content.controller";
 
 // Usuários
 router.get('/api/users', getUsers);
@@ -20,7 +20,8 @@ router.put('/api/customers/:id', updateCustomer);
 router.delete('/api/customers/:id', removeCustomer);
 
 // Conteúdo
-router.get('/api/content/:groupName', getLinksByGroupName);
+router.get('/api/content/group/:groupName', getContentByGroupName);
+router.get('/api/content/:title', getContentByTitle);
 
 
 export default router;
