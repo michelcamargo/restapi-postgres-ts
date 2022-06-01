@@ -21,7 +21,7 @@ VALUES
 -- Conteúdo: Template Header
 INSERT INTO CONTENT(GROUP_NAME, TITLE, LINK, TEXT, IS_EXTERNAL)
 VALUES
-    ('header_buttons', 'header-action-button', '/work', 'Let`s work together', false),
+    ('header_buttons', 'header-action-button', '/work', 'Meet my work', false),
     ('header_nav', 'header-action-button', '/login', 'Login', false);
 
 -- Conteúdo: Template Footer
@@ -34,15 +34,15 @@ VALUES
 -- Conteúdo: Home - hero
 INSERT INTO CONTENT(GROUP_NAME, TITLE, TEXT, IS_EXTERNAL)
 VALUES
-    ('hero_headtitle', 'hero-headtitle', 'Michel Camargo', false),
+    ('hero_headtitle', 'hero-title', 'Michel Camargo', false),
     ('hero_subtitle', 'hero-subtitle', 'UI Developer', false),
     ('hero_description', 'hero-description', 'Pleasure to ensure great experiences solving modern people problems', false);
 
 -- Links: Social
 INSERT INTO CONTENT(GROUP_NAME, TITLE, LINK, TEXT, IS_EXTERNAL, IMG_SRC)
 VALUES
-    ('social_links', 'social-linkedin', 'https://www.linkedin.com/in/michelscamargo/', 'LinkedIn', true, 'https://iili.io/XTRdgt.png'),
-    ('social_links', 'social-github', 'https://github.com/michelcamargo', 'GitHub', true, 'https://iili.io/XTR3dX.png');
+    ('social_links', 'social-linkedin', 'https://www.linkedin.com/in/michelscamargo/', 'LinkedIn', true, 'https://iili.io/XgNqAu.png'),
+    ('social_links', 'social-github', 'https://github.com/michelcamargo', 'GitHub', true, 'https://iili.io/XgjvIf.png');
 
 
 -- Portifolio
