@@ -48,5 +48,5 @@ VALUES
 -- Portifolio
 INSERT INTO PORTFOLIO(HEADING, SUBHEADING, DESCRIPTION, LINK)
 VALUES
-    ('Villa Mercato', '', 'Solução e-commerce VTEX que consolida um conceito inovador em supermercados online', 'https://villamercato.com.br'),
-    ('BeBrasil', '', 'Solução em vendas de cosméticos e produtos de aromaterapia integrado à VTEX-Checkout', 'https://store.bebrasil.io/');
+    ('Villa Mercato', 'Solução e-commerce VTEX que consolida um conceito inovador em supermercados online', '[descricao] Solução e-commerce VTEX que consolida um conceito inovador em supermercados online', 'https://villamercato.com.br'),
+    ('BeBrasil', 'Solução em vendas de cosméticos e produtos de aromaterapia integrado à VTEX-Checkout', '[descricao] Solução em vendas de cosméticos e produtos de aromaterapia integrado à VTEX-Checkout', 'https://store.bebrasil.io/');

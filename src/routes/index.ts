@@ -4,6 +4,7 @@ const router = Router();
 import { getUsers, getUserById, updateUser, removeUser, registerUser } from '../controllers/user/user.controller';
 import { getCustomerById, updateCustomer, removeCustomer, registerCustomer, getAllCustomers } from '../controllers/customer/customer.controller';
 import { getContentByGroupName, getContentByTitle } from "../controllers/content/content.controller";
+import {getAllExperience} from "../controllers/portfolio/portfolio.controller";
 
 // Usuários
 router.get('/api/users', getUsers);
@@ -22,6 +23,9 @@ router.delete('/api/customers/:id', removeCustomer);
 // Conteúdo
 router.get('/api/content/group/:groupName', getContentByGroupName);
 router.get('/api/content/:title', getContentByTitle);
+
+// Portifolio
+router.get('/api/portfolio', getAllExperience);
 
 
 export default router;
