@@ -1,5 +1,6 @@
 import express from 'express';
-import indexRoutes from './routes/index';
+import indexRoutes from './routes/index'
+import LoggingService from './middlewares/logging'
 
 const cors = require('cors');
 const app = express();
@@ -11,15 +12,21 @@ let corsOptions = {
   ssl: true
 }
 
-// Controle de ambiente
+// Liberação de acesso em ambiente local
+
 if ("development" == app.get("env")) {
-  process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0"; // PROD ONLY
+  console.log('Ambiente: ', app.get("env"));
+  process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0"; // DEV ONLY!
 }
+
 
 // Mediadores
 app.use(cors(corsOptions));
 // app.use(errorLoggingMiddleware);
-// app.use(loggingMiddleware);
+const logger = new LoggingService;
+
+app.use(logger.logRequest);
+app.use(logger.logError);
 app.use(express.json());
 
 
@@ -32,3 +39,6 @@ app.use(indexRoutes);
 app.listen(PORT, () => {
   console.log('Server is running on port', PORT);
 });
+
+// exportando para uso em logging, verificar boas práticas
+export {express};
