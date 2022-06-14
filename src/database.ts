@@ -8,5 +8,7 @@ export const pool = new Pool({
     ssl: true,
     min: 0,
     max: 5,
-    port: 5432
+    port: 5432,
+    // options: 'client_encoding: utf8'
+    // client_encoding: 'utf8'
 });
