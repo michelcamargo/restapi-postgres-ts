@@ -8,7 +8,7 @@ const PORT = process.env.PORT || 3000;
 // const loggingMiddleware = require('middlewares/logging/index');
 // const errorLoggingMiddleware = require('error-log-service');
 let corsOptions = {
-  origin: 'http://localhost:4200',
+  // origin: 'http://localhost:4200',
   ssl: true
 }
 
