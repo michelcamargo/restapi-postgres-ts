@@ -1,10 +1,10 @@
 import { Pool } from 'pg';
 
 export const dbPool = new Pool({
-    host: process.env['PG_URL'],
-    user: process.env['PG_USER'],
-    password: process.env['PG_SECRET_KEY'],
-    database: process.env['PG_DB_NAME'],
+    host: process.env['DATABASE_URL'],
+    user: process.env['DATABASE_USER'],
+    password: process.env['DATABASE_SECRET_KEY'],
+    database: process.env['DATABASE_NAME'],
     ssl: true,
     min: 0,
     max: 5,
