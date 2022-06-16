@@ -1,11 +1,11 @@
 import {Request, Response} from 'express';
 import {QueryResult} from 'pg';
 
-import { pool } from '../../database';
+import { dbPool } from '../../database';
 
 export const getUsers = async (req: Request, res: Response): Promise<Response> => {
   try {
-    const response: QueryResult = await pool.query('SELECT * FROM users');
+    const response: QueryResult = await dbPool.query('SELECT * FROM users');
     // console.log("[getUsers]", response.rows);
     return res.status(200).json(response.rows);
   } catch (error) {
@@ -20,7 +20,7 @@ export const getUserById = async (req: Request, res: Response): Promise<Response
   try {
     const query = 'SELECT * FROM users WHERE id = $1';
     const id = parseInt(req.params.id);
-    const response: QueryResult = await pool.query(query, [id]);
+    const response: QueryResult = await dbPool.query(query, [id]);
     return res.status(200).json(response.rows);
   } catch (error) {
     return res.status(500).json({
@@ -37,7 +37,7 @@ export const registerUser = async (req: Request, res: Response): Promise<Respons
 
     // checkIfUserExists(email) && console.log("[createUser]", "Usuário existente.");
 
-    const response: QueryResult = await pool.query(query, [alias, firstName, lastName, email, secret]);
+    const response: QueryResult = await dbPool.query(query, [alias, firstName, lastName, email, secret]);
     return res.status(201).json({
       message: '[Users] Usuário criado.',
       body: {
@@ -64,7 +64,7 @@ export const updateUser = async (req: Request, res: Response): Promise<Response>
     const { name, email } = req.body;
     const query = 'UPDATE users SET name = $1, email = $2 WHERE id = $3';
 
-    const response: QueryResult = await pool.query(query, [name, email, id]);
+    const response: QueryResult = await dbPool.query(query, [name, email, id]);
     return res.status(200).json({
       message: `[Users] Usuário ${name} atualizado.`,
       body: {
@@ -87,7 +87,7 @@ export const removeUser = async (req: Request, res: Response): Promise<Response>
     const id = parseInt(req.params.id);
     const query = 'DELETE FROM users WHERE id = $1';
 
-    const response: QueryResult = await pool.query(query, [id]);
+    const response: QueryResult = await dbPool.query(query, [id]);
     return res.status(200).json({
       message:`[Users] Usuário ${id} removido.`
     });

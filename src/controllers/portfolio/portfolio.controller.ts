@@ -1,7 +1,7 @@
 import {Request, Response} from 'express';
 import {QueryResult} from 'pg';
 
-import { dbPool } from '../../database/db.dev';
+import { dbPool } from '../../database';
 
 export const getAllExperience = async (req: Request, res: Response): Promise<Response> => {
     try {

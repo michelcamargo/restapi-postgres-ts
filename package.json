@@ -4,6 +4,7 @@
   "description": "API REST Postgres Typescript - mscamargo",
   "main": "index.js",
   "scripts": {
+    "start": "nodemon dist/index.js",
     "dev": "concurrently \"tsc --watch\" \"nodemon dist/index.js\"",
     "build": "tsc"
   },

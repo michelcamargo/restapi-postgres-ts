@@ -1,7 +1,9 @@
 # API RESTFUL
-## Banco de dados Postgresql em node.js
-#### Por: Michel Camargo
+## Banco de dados postgresql em node.js
+#### Autor: Michel de Souza Camargo
+
 > ### Dependências
+> 
 > * **Typescript** : Compilador Typescript -> Javascript.
 > 
 > 
