@@ -13,7 +13,6 @@ let corsOptions = {
 }
 
 // Liberação de acesso em ambiente local
-
 if ("development" == app.get("env")) {
   console.log('Ambiente: ', app.get("env"));
   process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0"; // DEV ONLY!
